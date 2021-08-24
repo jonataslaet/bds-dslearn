@@ -29,3 +29,15 @@ INSERT INTO tb_section (title, description, position, img_uri, resource_id, prer
 INSERT INTO tb_enrollment (user_id, offer_id, enroll_moment, refund_moment, available, only_update) VALUES (1, 1, TIMESTAMP WITH TIME ZONE '2020-11-20T03:00:00Z', null, true, false);
 INSERT INTO tb_enrollment (user_id, offer_id, enroll_moment, refund_moment, available, only_update) VALUES (2, 1, TIMESTAMP WITH TIME ZONE '2020-11-20T03:00:00Z', null, true, false);
 
+INSERT INTO tb_lesson (position, title, section_id) VALUES (1, 'Aula 1 do Capítulo 1', 1);
+INSERT INTO tb_content (id, text_content, video_uri) VALUES (1, 'Material de Apoio: a', 'https://www.youtube.com/watch?v=sqbqoR-lMf8');
+
+INSERT INTO tb_lesson (position, title, section_id) VALUES (2, 'Aula 2 do Capítulo 1', 1);
+INSERT INTO tb_content (id, text_content, video_uri) VALUES (2, 'Material de Apoio: b', 'https://www.youtube.com/watch?v=sqbqoR-lMf8');
+
+INSERT INTO tb_lesson (position, title, section_id) VALUES (3, 'Aula 3 do Capítulo 1', 1);
+INSERT INTO tb_content (id, text_content, video_uri) VALUES (3, 'Material de Apoio: c', 'https://www.youtube.com/watch?v=sqbqoR-lMf8');
+
+INSERT INTO tb_lesson (position, title, section_id) VALUES (4, 'Tarefa 1 do Capítulo 1', 1);
+INSERT INTO tb_task (id, approval_count, question_count, description, due_date, weight) VALUES (4, 5, 4, 'Fazer um trabalho assim e assado', TIMESTAMP WITH TIME ZONE '2020-11-25T11:00:00Z', 1.0);
+

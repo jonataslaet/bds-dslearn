@@ -6,14 +6,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tb_section")
-public class Section implements Serializable {
+@Table(name = "tb_lesson")
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Lesson implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -22,33 +24,21 @@ public class Section implements Serializable {
 
 	private String title;
 
-	private String description;
-
 	private Integer position;
-
-	private String imgUri;
 	
-	@ManyToOne
-	@JoinColumn(name = "resource_id")
-	private Resource resource;
-
 	@OneToOne
-	@JoinColumn(name = "prerequisite_id")
-	private Section prerequisite;
-	
-	@OneToOne(mappedBy = "section")
-	private Lesson lesson;
-	
-	public Section() {
+	@JoinColumn(name = "section_id")
+	private Section section;
+
+	public Lesson() {
+
 	}
 
-	public Section(Long id, String title, String description, Integer position, String imgUri) {
+	public Lesson(Long id, String title, Integer position) {
 		super();
 		this.id = id;
 		this.title = title;
-		this.description = description;
 		this.position = position;
-		this.imgUri = imgUri;
 	}
 
 	public Long getId() {
@@ -67,52 +57,12 @@ public class Section implements Serializable {
 		this.title = title;
 	}
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
 	public Integer getPosition() {
 		return position;
 	}
 
 	public void setPosition(Integer position) {
 		this.position = position;
-	}
-
-	public String getImgUri() {
-		return imgUri;
-	}
-
-	public void setImgUri(String imgUri) {
-		this.imgUri = imgUri;
-	}
-
-	public Section getPrerequisite() {
-		return prerequisite;
-	}
-
-	public void setPrerequisite(Section prerequisite) {
-		this.prerequisite = prerequisite;
-	}
-
-	public Resource getResource() {
-		return resource;
-	}
-
-	public void setResource(Resource resource) {
-		this.resource = resource;
-	}
-
-	public Lesson getLesson() {
-		return lesson;
-	}
-
-	public void setLesson(Lesson lesson) {
-		this.lesson = lesson;
 	}
 
 	@Override
@@ -131,7 +81,7 @@ public class Section implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Section other = (Section) obj;
+		Lesson other = (Lesson) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
