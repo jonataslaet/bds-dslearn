@@ -41,3 +41,5 @@ INSERT INTO tb_content (id, text_content, video_uri) VALUES (3, 'Material de Apo
 INSERT INTO tb_lesson (position, title, section_id) VALUES (4, 'Tarefa 1 do Capítulo 1', 1);
 INSERT INTO tb_task (id, approval_count, question_count, description, due_date, weight) VALUES (4, 5, 4, 'Fazer um trabalho assim e assado', TIMESTAMP WITH TIME ZONE '2020-11-25T11:00:00Z', 1.0);
 
+INSERT INTO tb_lessons_done (lesson_id, user_id, offer_id) VALUES (1, 1, 1);
+INSERT INTO tb_lessons_done (lesson_id, user_id, offer_id) VALUES (2, 1, 1);
