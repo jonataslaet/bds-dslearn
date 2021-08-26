@@ -9,7 +9,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.devsuperior.dslearn.dtos.UserDTO;
 import com.devsuperior.dslearn.entities.User;
 import com.devsuperior.dslearn.repositories.UserRepository;
 
@@ -19,6 +21,13 @@ public class UserService implements UserDetailsService {
 	@Autowired
 	private UserRepository userRepository;
 
+	@Transactional(readOnly = true)
+	public UserDTO findById(Long id) {
+		Optional<User> userOptional = userRepository.findById(id);
+		userOptional.orElseThrow(() -> new EntityNotFoundException("User not found"));
+		return new UserDTO(userOptional.get());
+	}
+	
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		Optional<User> userByEmail = userRepository.findByEmail(email);
