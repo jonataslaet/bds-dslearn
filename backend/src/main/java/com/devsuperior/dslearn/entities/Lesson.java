@@ -15,8 +15,8 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -33,7 +33,7 @@ public abstract class Lesson implements Serializable {
 
 	private Integer position;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "section_id")
 	private Section section;
 	
